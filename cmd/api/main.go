@@ -1,6 +1,13 @@
 package main
 
-import "log"
+import (
+	"fmt"
+	"log"
+)
+
+func init() {
+	fmt.Println("We just started!")
+}
 
 func main() {
 	cfg := config{
