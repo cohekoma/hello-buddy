@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"github.com/cohekoma/hello-buddy/internal/config"
+	"github.com/cohekoma/hello-buddy/internal/storage"
 )
 
 func init() {
@@ -15,8 +16,12 @@ func main() {
 	appCfg := appConfig{
 		addr: config.GetString("ADDR", ":8080"),
 	}
+
+	appStorage := storage.NewStorage(nil)
+
 	app := &app{
 		appConfig: appCfg,
+		storage:   *appStorage,
 	}
 
 	mux := app.mount()
