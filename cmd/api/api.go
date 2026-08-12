@@ -10,10 +10,10 @@ import (
 )
 
 type app struct {
-	config config
+	appConfig appConfig
 }
 
-type config struct {
+type appConfig struct {
 	addr string
 }
 
@@ -33,14 +33,14 @@ func (app *app) mount() *chi.Mux {
 func (app *app) run(mux *chi.Mux) error {
 
 	srv := &http.Server{
-		Addr:         app.config.addr,
+		Addr:         app.appConfig.addr,
 		Handler:      mux,
 		WriteTimeout: time.Second * 30,
 		ReadTimeout:  time.Second * 10,
 		IdleTimeout:  time.Minute,
 	}
 
-	log.Printf("Server is running at %s", app.config.addr)
+	log.Printf("Server is running at %s", app.appConfig.addr)
 
 	return srv.ListenAndServe()
 }

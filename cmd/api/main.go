@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"log"
+
+	"github.com/cohekoma/hello-buddy/internal/config"
 )
 
 func init() {
@@ -10,11 +12,11 @@ func init() {
 }
 
 func main() {
-	cfg := config{
-		addr: ":3004",
+	appCfg := appConfig{
+		addr: config.GetString("ADDR", ":8080"),
 	}
 	app := &app{
-		config: cfg,
+		appConfig: appCfg,
 	}
 
 	mux := app.mount()
